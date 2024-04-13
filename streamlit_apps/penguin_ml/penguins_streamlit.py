@@ -18,14 +18,14 @@ penguin_file = st.file_uploader('Upload your own penguin data')
 
 
 if penguin_file is None:
-    rf_pickle = open('random_forest_penguin.pickle', 'rb')
-    map_pickle = open('output_penguin.pickle', 'rb')
+    rf_pickle = open('streamlit_apps/penguin_ml/random_forest_penguin.pickle', 'rb')
+    map_pickle = open('streamlit_apps/penguin_ml/output_penguin.pickle', 'rb')
     rfc = pickle.load(rf_pickle)
     unique_penguin_mapping = pickle.load(map_pickle)
     rf_pickle.close()
     map_pickle.close()
 
-    penguin_df = pd.read_csv("penguins.csv")
+    penguin_df = pd.read_csv("streamlit_apps/penguin_ml/penguins.csv")
     penguin_df.dropna(inplace=True)
 
 else:
@@ -99,7 +99,7 @@ st.write(
     used in this prediction are ranked by 
     relative importance below."""
 )
-st.image('feature_importance.png')
+st.image('streamlit_apps/penguin_ml/feature_importance.png')
 
 
 

@@ -6,7 +6,7 @@ import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-penguin_df = pd.read_csv("penguins.csv")
+penguin_df = pd.read_csv("streamlit_apps/penguin_ml/penguins.csv")
 penguin_df.dropna(inplace=True)
 output = penguin_df["species"]
 features = penguin_df[[
@@ -34,10 +34,10 @@ score = accuracy_score(y_pred, y_test)
 
 print('Our accuracy score for this model is {}'.format(score))
 
-rf_pickle = open("random_forest_penguin.pickle", "wb")
+rf_pickle = open("streamlit_apps/penguin_ml/random_forest_penguin.pickle", "wb")
 pickle.dump(rfc, rf_pickle)
 rf_pickle.close()
-output_pickle = open("output_penguin.pickle", "wb")
+output_pickle = open("streamlit_apps/penguin_ml/output_penguin.pickle", "wb")
 pickle.dump(uniques, output_pickle)
 output_pickle.close()
 
@@ -48,4 +48,4 @@ plt.xlabel('Importance')
 plt.ylabel('Feature')
 plt.tight_layout()
 
-fig.savefig('feature_importance.png')
+fig.savefig('streamlit_apps/penguin_ml/feature_importance.png')
