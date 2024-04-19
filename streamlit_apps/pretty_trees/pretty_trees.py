@@ -24,6 +24,13 @@ if owners:
 
     trees_df = trees_df[
         trees_df["caretaker"].isin(owners)]
+    
+
+edited_df = st.data_editor(trees_df) 
+trees_df.loc[edited_df.index] = edited_df
+if st.button("Save data and overwrite:"):
+    trees_df.to_csv("trees.csv", index=False)
+    st.write("Saved!")
 
 df_dbh_grouped = pd.DataFrame(trees_df.groupby(['dbh']).count()['tree_id'])
 df_dbh_grouped.columns = ['tree_count']
