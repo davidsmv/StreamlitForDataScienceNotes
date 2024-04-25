@@ -19,3 +19,4 @@ streamlit-folium
 google-cloud-bigquery
 db-dtypes
 openai
+streamlit-plotly-events==0.0.6
