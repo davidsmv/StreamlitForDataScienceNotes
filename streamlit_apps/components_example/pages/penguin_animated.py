@@ -1,12 +1,27 @@
  
 import pandas as pd
 import plotly.express as px
+import requests
 import streamlit as st
-from streamlit_plotly_events import plotly_events
+# add streamlit lottie
+from streamlit_lottie import st_lottie
 import plotly.io as pio
 pio.templates.default = "plotly"
- 
-st.title("Streamlit Plotly Events Example: Penguins")
+
+from streamlit_plotly_events import plotly_events
+
+@st.cache_data()
+def load_lottieurl(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+lottie_penguin = load_lottieurl(
+    "https://assets9.lottiefiles.com/private_files/lf30_lntyk83o.json"
+)
+st_lottie(lottie_penguin, height=200)
+st.title("Streamlit Plotly Events + Lottie Example: Penguins")
+
 df = pd.read_csv("streamlit_apps/components_example/penguins.csv")
 fig = px.scatter(df, x="bill_length_mm", y="bill_depth_mm", color="species")
 
